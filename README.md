@@ -1,2 +1,2 @@
-Laboratorio front end
-React-app
+Laboratorio front end usando React
+No subí node-modules
