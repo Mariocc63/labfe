@@ -1,93 +1,55 @@
-import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React from 'react';
 
-class App extends Component {
+class App extends React.Component {
+
   constructor(props) {
     super(props);
-    this.state = {
-      newItem: "",
-      list: []
-    };
+    this.state = { hits: null };
   }
 
-  updateInput(key, value) {
-    // update react state
-    this.setState({ [key]: value });
+  onSearch = (e) => {
+    e.preventDefault();
+
+    const { value } = this.input;
+
+    if (value === '') {
+      return;
+    }
+
+    const cachedHits = localStorage.getItem(value);
+    if (cachedHits) {
+      this.setState({ hits: JSON.parse(cachedHits) });
+      return;
+    }
+
+    fetch('https://hn.algolia.com/api/v1/search?query=' + value)
+      .then(response => response.json())
+      .then(result => this.onSetResult(result, value));
   }
 
-  addItem() {
-    // create a new item
-    const newItem = {
-      id: 1 + Math.random(),
-      value: this.state.newItem.slice()
-    };
-
-    // copy current list of items
-    const list = [...this.state.list];
-
-    // add the new item to the list
-    list.push(newItem);
-
-    // update state with new list, reset the new item input
-    this.setState({
-      list,
-      newItem: ""
-    });
-  }
-
-  deleteItem(id) {
-    // copy current list of items
-    const list = [...this.state.list];
-    // filter out the item being deleted
-    const updatedList = list.filter(item => item.id !== id);
-
-    this.setState({ list: updatedList });
+  onSetResult = (result, key) => {
+    localStorage.setItem(key, JSON.stringify(result.hits));
+    this.setState({ hits: result.hits });
   }
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React LocalStorage Tutorial</h1>
-        </header>
-        <div
-          style={{
-            padding: 50,
-            textAlign: "left",
-            maxWidth: 500,
-            margin: "auto"
-          }}
-        >
-          Add an item to the list
-          <br />
-          <input
-            type="text"
-            placeholder="Type item here"
-            value={this.state.newItem}
-            onChange={e => this.updateInput("newItem", e.target.value)}
-          />
-          <button
-            onClick={() => this.addItem()}
-            disabled={!this.state.newItem.length}
-          >
-            &#43; Add
-          </button>
-          <br /> <br />
-          <ul>
-            {this.state.list.map(item => {
-              return (
-                <li key={item.id}>
-                  {item.value}
-                  <button onClick={() => this.deleteItem(item.id)}>
-                    Remove
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+      <div>
+        <h1>Search Hacker News with Local Storage</h1>
+        <p>
+          There shouldn't be a second network request,
+          when you search for something twice.
+        </p>
+
+        <form type="submit" onSubmit={this.onSearch}>
+          <input type="text" ref={node => this.input = node} />
+          <button type="button">Search</button>
+        </form>
+
+        {
+          this.state.hits &&
+          this.state.hits.map(item => <div key={item.objectID}>{item.title}</div>)
+        }
       </div>
     );
   }
