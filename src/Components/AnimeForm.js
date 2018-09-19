@@ -33,7 +33,7 @@ class AnimeForm extends Component{
     render () {
         return (
             <div className="card">
-                <form className="card-body">
+                <form className="card-body" onSubmit={this.handleSubmit}>
                 <div className="form-group">
                     <input
                         type="text"

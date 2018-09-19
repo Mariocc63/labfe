@@ -2,13 +2,14 @@ import React from 'react';
 
 import {animes} from './animes.json';
 import AnimeForm from './Components/AnimeForm';
-console.log(animes)
+console.log({animes})
 class App extends React.Component {
   constructor(){
     super();
     this.state = {
       animes
-    }
+    };
+    this.handleAddAnime = this.handleAddAnime.bind(this);
   }
 
   handleAddAnime(anime) {
