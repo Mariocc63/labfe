@@ -10,6 +10,10 @@ class AnimeForm extends component{
         };
     }
 
+    handleInput (){
+        
+    }
+
     render () {
         return (
             <div className="card">
@@ -18,6 +22,7 @@ class AnimeForm extends component{
                     <input
                         type="text"
                         name="title_anime"
+                        onChange={this.handleInput}
                         className="form-control"
                         placeholder="Titulo"
                     />
@@ -38,8 +43,13 @@ class AnimeForm extends component{
                         placeholder="Descripcion"
                     />
                 </div>
+            <button type="submit" className="btn btn-primary">
+                Save
+            </button>
                 </form>
             </div>
         );
     }
 }
+
+export default AnimeForm;
