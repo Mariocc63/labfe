@@ -14,11 +14,14 @@ class App extends React.Component {
    const animes = this.state.animes.map((anime, i) => {
       return (
         <div className="col-md-4">
-          <div className = "card">
+          <div className = "card mt-4">
             <div className = "card-header">
               <h3>
                 {anime.title_anime}
               </h3>
+              <span className="badge-pill badge-danger ml-2">
+              {anime.genero}
+              </span>
             </div>
             <div className = "card-body">
               <p>
