@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {animes} from './animes.json';
+console.log(animes)
 class App extends React.Component {
   render() {
     return (

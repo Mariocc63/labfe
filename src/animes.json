@@ -1,0 +1,19 @@
+{
+    "animes": [
+        {
+            "title_anime": "Dragon Ball",
+            "genero": "Shounen, Peleas, Accion",
+            "description": "Anime para ir a buscar las esferas del dragon"
+        },
+        {
+            "title_anime": "Assination Classroom",
+            "genero": "Escolar, comedia",
+            "description": "Una extraña criatura destruye la luna"
+        },
+        {
+            "title_anime": "Boku dake ga inai machi",
+            "genero": "Slice of life, psicologico, sobrenatural",
+            "description": "Anime que habla sobre el efecto mariposa"
+        }
+    ]
+}
