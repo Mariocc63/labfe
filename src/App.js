@@ -2,7 +2,7 @@ import React from 'react';
 
 import {animes} from './animes.json';
 import AnimeForm from './Components/AnimeForm';
-console.log({animes})
+//console.log({animes})
 class App extends React.Component {
   constructor(){
     super();
@@ -21,7 +21,7 @@ class App extends React.Component {
   render() {
    const animes = this.state.animes.map((anime, i) => {
       return (
-        <div className="col-md-4">
+        <div className="col-md-4" key={i}>
           <div className = "card mt-4">
             <div className = "card-header">
               <h3>
