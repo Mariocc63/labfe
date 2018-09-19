@@ -20,7 +20,8 @@ class AnimeForm extends Component{
           genero: '',
           description: ''
         });
-        window.localStorage.setItem('animes', JSON.stringify(this.state));
+        let animes = [];
+        animes.unshift(window.localStorage.setItem('animes', JSON.stringify(this.state)));
     }
 
     handleInputChange(e) {
