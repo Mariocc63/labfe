@@ -11,7 +11,25 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('Antes de renderizar el componente');
+   const animes = this.state.animes.map((anime, i) => {
+      return (
+        <div className="col-md-4">
+          <div className = "card">
+            <div className = "card-header">
+              <h3>
+                {anime.title_anime}
+              </h3>
+            </div>
+            <div className = "card-body">
+              <p>
+                {anime.description}
+              </p>
+            </div>
+          </div>
+        </div>
+      )
+    })
+
     return (
       <div className = "App">
         <nav className = "navbar navbar-dark bg-dark">
@@ -19,6 +37,12 @@ class App extends React.Component {
             tasks
           </a>
         </nav>
+        <div className="container">
+        <div className="row mt-4">
+        {animes}
+        </div>
+        </div>
+        
       </div>
     );
   }
