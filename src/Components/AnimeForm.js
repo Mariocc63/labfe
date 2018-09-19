@@ -1,6 +1,6 @@
-import React, {component} from 'react';
+import React, {Component} from 'react';
 
-class AnimeForm extends component{
+class AnimeForm extends Component{
     constructor(){
         super();
         this.state = {
@@ -46,9 +46,9 @@ class AnimeForm extends component{
             <button type="submit" className="btn btn-primary">
                 Save
             </button>
-                </form>
-            </div>
-        );
+            </form>
+        </div>
+        )
     }
 }
 

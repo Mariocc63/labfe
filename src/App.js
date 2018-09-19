@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {animes} from './animes.json';
+import AnimeForm from './Components/AnimeForm';
 console.log(animes)
 class App extends React.Component {
   constructor(){
@@ -9,6 +10,12 @@ class App extends React.Component {
       animes
     }
   }
+
+  handleAddAnime(anime) {
+    this.setState({
+      animes: [...this.state.animes, anime]
+    })
+}
 
   render() {
    const animes = this.state.animes.map((anime, i) => {
@@ -44,8 +51,17 @@ class App extends React.Component {
           </a>
         </nav>
         <div className="container">
-        <div className="row mt-4">
-        {animes}
+          <div className="row mt-4">
+
+            <div className="col-md-4 text-center">
+              <AnimeForm onAddAnime={this.handleAddAnime}></AnimeForm>
+            </div>
+
+            <div className="col-md-8">
+              <div className="row">
+                {animes}
+              </div>
+        </div>
         </div>
         </div>
         
