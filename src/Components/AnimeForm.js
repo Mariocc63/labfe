@@ -8,10 +8,26 @@ class AnimeForm extends Component{
             genero: '',
             description: ''
         };
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleInput (){
-        
+    handleSubmit(e) {
+        e.preventDefault();
+        this.props.onAddAnime(this.state);
+        this.setState({
+          title_anime: '',
+          genero: '',
+          description: ''
+        });
+    }
+
+    handleInputChange(e) {
+        const {value, name} = e.target;
+        console.log(value, name);
+        this.setState({
+          [name]: value
+        });
     }
 
     render () {
@@ -22,7 +38,8 @@ class AnimeForm extends Component{
                     <input
                         type="text"
                         name="title_anime"
-                        onChange={this.handleInput}
+                        value={this.state.title}
+                        onChange={this.handleInputChange}
                         className="form-control"
                         placeholder="Titulo"
                     />
@@ -31,6 +48,8 @@ class AnimeForm extends Component{
                     <input
                         type="text"
                         name="genero"
+                        value={this.state.title}
+                        onChange={this.handleInputChange}
                         className="form-control"
                         placeholder="Genero"
                     />
@@ -39,6 +58,8 @@ class AnimeForm extends Component{
                     <input
                         type="text"
                         name="description"
+                        value={this.state.title}
+                        onChange={this.handleInputChange}
                         className="form-control"
                         placeholder="Descripcion"
                     />
