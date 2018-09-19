@@ -37,7 +37,10 @@ class App extends React.Component {
       <div className = "App">
         <nav className = "navbar navbar-dark bg-dark">
           <a href = "" className = "text-white">
-            tasks
+            Animes
+            <span className="badge badge-pill badge-light ml-2">
+              {this.state.animes.length}
+            </span>
           </a>
         </nav>
         <div className="container">
