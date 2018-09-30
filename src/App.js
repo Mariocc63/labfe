@@ -7,7 +7,7 @@ class App extends React.Component {
   constructor(){
     super();
     this.state = {
-      animes: [window.localStorage.getItem('animes')]
+      animes
     };
     this.handleAddAnime = this.handleAddAnime.bind(this);
   }
