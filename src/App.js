@@ -4,10 +4,6 @@ import Redirect from './Components/Redirect';
 //console.log({animes})
 class App extends React.Component {
 
-  
-
-
-
   render() {
   
 
