@@ -2,6 +2,7 @@ import React from 'react';
 
 import {animes} from './animes.json';
 import AnimeForm from './Components/AnimeForm';
+import Redirect from './Components/Redirect';
 //console.log({animes})
 class App extends React.Component {
   constructor(){
@@ -54,16 +55,16 @@ class App extends React.Component {
         <div className="container">
           <div className="row mt-4">
 
-            <div className="col-md-4 text-center">
-              <AnimeForm onAddAnime={this.handleAddAnime}></AnimeForm>
+            <div>
+              <Redirect></Redirect>
             </div>
 
             <div className="col-md-8">
               <div className="row">
                 {animes}
               </div>
-        </div>
-        </div>
+            </div>
+          </div>
         </div>
         
       </div>
