@@ -1,68 +1,33 @@
 import React, { Component } from 'react';
 
-class AnimeItem extends Component {
+class AddAnime extends Component {
   constructor(props){
     super(props);
 
-    this.state = {
-      isEdit: false
-    };
-
-    this.onDelete = this.onDelete.bind(this);
-    this.onEdit = this.onEdit.bind(this);
-    this.onEditSubmit = this.onEditSubmit.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onDelete(){
-    const { onDelete, nombre } = this.props;
-
-    onDelete(nombre);
-  }
-
-  onEdit(){
-    this.setState({ isEdit: true});
-  }
-
-  onEditSubmit(event){
+  onSubmit(event) {
     event.preventDefault();
 
-    this.props.onEditSubmit(this.nombreInput.value, this.generoInput.value, this.temporadasInput.value, this.props.nombre);
+    this.props.onAdd(this.nombreInput.value, this.generoInput.value, this.temporadasInput.value);
 
-    this.setState({isEdit:false});
+    this.nombreInput.value = '';
+    this.generoInput.value = '';
+    this.temporadasInput.value = '';
   }
 
   render() {
-      const {nombre, genero, temporadas} = this.props;
-   
       return (
-        <div>
-          {
-            this.state.isEdit
-            ? (
-              <form onSubmit={this.onEditSubmit}>
-                <input placeholder = "Nombre" ref={nombreInput => this.nombreInput = nombreInput} defaultValue={nombre}/>
-                <input placeholder = "Genero" ref={generoInput => this.generoInput = generoInput} defaultValue={genero}/>
-                <input placeholder = "Temporadas" ref={temporadasInput => this.temporadasInput = temporadasInput} defaultValue={temporadas}/>
-                <button>Guardar</button>
-              </form>
-            ):
-            (
-              <div>
-                <span> {nombre}</span> 
-                {' | '} 
-                <span>{genero}</span>
-                {' | '}
-                <span> {temporadas}</span> 
-                {' | '}
-                <button onClick={this.onEdit}>Editar</button>
-                {' | '}
-                <button onClick={this.onDelete}>Eliminar</button>
-              </div>
-            )
-          }
-      </div>
+        <form onSubmit={this.onSubmit}>
+            <h3>Agregar Anime</h3>
+            <input placeholder = "Nombre" ref={nombreInput => this.nombreInput = nombreInput}/>
+            <input placeholder = "Genero" ref={generoInput => this.generoInput = generoInput}/>
+            <input placeholder = "Temporadas" ref={temporadasInput => this.temporadasInput = temporadasInput}/>
+            <button>Agregar</button>
+        </form>
     );
   }
 }
 
-export default AnimeItem;
+export default AddAnime;
