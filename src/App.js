@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import AnimeItem from './AnimeItem';
-import AddAnime from './AddAnime';
+import AnimeItem from './Components/AnimeItem';
+import AddAnime from './Components/AddAnime';
 
 const animes = [
   {
