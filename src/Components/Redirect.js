@@ -1,5 +1,4 @@
 import React from "react";
-import Prueba from './Prueba';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
@@ -26,7 +25,7 @@ const Redirect = () => (
 
 const prueba = () => (
     <div>
-        <Prueba></Prueba>
+        {/* <Prueba></Prueba> */}
     </div>
 );
 
