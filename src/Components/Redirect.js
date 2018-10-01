@@ -1,37 +1,25 @@
 import React from "react";
+import Prueba from './Components/Prueba';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
+
 
 const Redirect = () => (
   <Router>
     <div>
       <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/about">About</Link>
-        </li>
+        
+        <Prueba></Prueba>
+     
       </ul>
 
       <hr />
 
-      <Route exact path="/" component={Home}/>
-      <Route path="/about" component={About}/>
+      
+      <Route path="/prueba"/>
 
     </div>
   </Router>
 );
-
-const Home = () => (
-    <div>
-      <h2>Home</h2>
-    </div>
-  );
-
-  const About = () => (
-    <div>
-      <h2>About</h2>
-    </div>
-  );
 
 export default Redirect
