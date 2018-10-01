@@ -1,5 +1,5 @@
 import React from "react";
-import Prueba from './Components/Prueba';
+import Prueba from './Prueba';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
@@ -9,17 +9,25 @@ const Redirect = () => (
     <div>
       <ul>
         
-        <Prueba></Prueba>
+         <li>
+          <Link to="/prueba">Prueba</Link>
+        </li>
      
       </ul>
 
       <hr />
 
       
-      <Route path="/prueba"/>
+      <Route path="/prueba" component={prueba}/>
 
     </div>
   </Router>
+);
+
+const prueba = () => (
+    <div>
+        <Prueba></Prueba>
+    </div>
 );
 
 export default Redirect
