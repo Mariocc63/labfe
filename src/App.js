@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import AnimeItem from './Components/AnimeItem';
 import AddAnime from './Components/AddAnime';
+import axios from 'axios';
 
-const animes = [
+/* const animes = [
   {
     nombre: "Naruto",
     genero: "Shounen, accion, ninjas",
@@ -14,16 +15,16 @@ const animes = [
     genero: "Shounen, magia, fantasia",
     temporadas: 3
   }
-]
+] */
 
-localStorage.setItem('animes', JSON.stringify(animes));
+//localStorage.setItem('animes', JSON.stringify(animes));
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      animes: JSON.parse(localStorage.getItem('animes'))
+      animes: []
     };
 
     this.onAdd = this.onAdd.bind(this);
@@ -31,30 +32,47 @@ class App extends Component {
     this.onEditSubmit = this.onEditSubmit.bind(this);
   }
 
-  componentWillMount(){
-    const animes = this.getAnimes();
-
-    this.setState({animes});
+  componentDidMount(){
+    this.getAnimes()
   }
+
+  componentDidUpdate(){
+    this.getAnimes()
+  }
+
 
   getAnimes(){
-    return this.state.animes;
+    axios.get('http://localhost:4000/animes')
+    .then(response => {
+      this.setState({ animes: response.data });
+    })
+    .catch(function (error) {
+      console.log(error);
+})
   }
 
-  onAdd(nombre, genero, temporadas){
-    const animes = this.getAnimes();
+  onAdd(name, gender, temp){
+    const obj = {
+      nombre: name,
+      genero: gender,
+      temporadas: temp
+    };
+    axios.post('http://localhost:4000/animes/', obj)
+        .then(res => console.log(res.data));
+
+    const animes = this.state.animes;
 
     animes.push({
-      nombre,
-      genero,
-      temporadas
+      name,
+      gender,
+      temp
     });
 
     this.setState({animes});
   }
 
   onDelete(nombre){
-    const animes = this.getAnimes();
+    const animes = this.state.animes;
 
     const fillteredAnimes = animes.filter(anime => {
       return anime.nombre !== nombre;
@@ -64,7 +82,7 @@ class App extends Component {
   } 
 
   onEditSubmit(nombre, genero, temporadas, nombreOriginal){
-    let animes = this.getAnimes();
+    let animes = this.state.animes;
 
     animes = animes.map(anime => {
       if(anime.nombre === nombreOriginal){
