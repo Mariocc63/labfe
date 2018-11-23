@@ -34,10 +34,12 @@ class App extends Component {
 
   componentDidMount(){
     this.getAnimes()
+    //console.log(this.state.animes)
   }
 
   componentDidUpdate(){
     this.getAnimes()
+    
   }
 
 
@@ -60,15 +62,15 @@ class App extends Component {
     axios.post('http://localhost:4000/animes/', obj)
         .then(res => console.log(res.data));
 
-    const animes = this.state.animes;
+    //const animes = this.state.animes;
 
-    animes.push({
-      name,
-      gender,
-      temp
-    });
+    // animes.push({
+    //   name,
+    //   gender,
+    //   temp
+    // });
 
-    this.setState({animes});
+    // this.setState({animes});
   }
 
   onDelete(nombre){
@@ -81,19 +83,14 @@ class App extends Component {
     this.setState({animes: fillteredAnimes});
   } 
 
-  onEditSubmit(nombre, genero, temporadas, nombreOriginal){
-    let animes = this.state.animes;
-
-    animes = animes.map(anime => {
-      if(anime.nombre === nombreOriginal){
-        anime.nombre = nombre;
-        anime.genero = genero;
-        anime.temporadas = temporadas;
-      }
-      return anime;
-    });
-
-    this.setState({animes});
+  onEditSubmit(name, gender, temp, id){
+    const obj = {
+      nombre: name,
+      genero: gender,
+      temporadas: temp
+    };
+    axios.put('http://localhost:4000/animes/'+id, obj)
+.then(res => console.log(res.data));
   }
 
   render() {

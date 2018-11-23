@@ -26,7 +26,7 @@ class AnimeItem extends Component {
   onEditSubmit(event){
     event.preventDefault();
 
-    this.props.onEditSubmit(this.nombreInput.value, this.generoInput.value, this.temporadasInput.value, this.props.nombre);
+    this.props.onEditSubmit(this.nombreInput.value, this.generoInput.value, this.temporadasInput.value, this.props._id);
 
     this.setState({isEdit:false});
   }
