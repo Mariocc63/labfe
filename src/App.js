@@ -4,21 +4,6 @@ import AnimeItem from './Components/AnimeItem';
 import AddAnime from './Components/AddAnime';
 import axios from 'axios';
 
-/* const animes = [
-  {
-    nombre: "Naruto",
-    genero: "Shounen, accion, ninjas",
-    temporadas: 2
-  },
-  {
-    nombre: "Fairy Tail",
-    genero: "Shounen, magia, fantasia",
-    temporadas: 3
-  }
-] */
-
-//localStorage.setItem('animes', JSON.stringify(animes));
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -34,7 +19,6 @@ class App extends Component {
 
   componentDidMount(){
     this.getAnimes()
-    //console.log(this.state.animes)
   }
 
   componentDidUpdate(){
@@ -61,26 +45,13 @@ class App extends Component {
     };
     axios.post('http://localhost:4000/animes/', obj)
         .then(res => console.log(res.data));
-
-    //const animes = this.state.animes;
-
-    // animes.push({
-    //   name,
-    //   gender,
-    //   temp
-    // });
-
-    // this.setState({animes});
   }
 
-  onDelete(nombre){
-    const animes = this.state.animes;
+  onDelete(id){
+    axios.delete('http://localhost:4000/animes/'+id)
+    .then(console.log('Deleted'))
+.catch(err => console.log(err))
 
-    const fillteredAnimes = animes.filter(anime => {
-      return anime.nombre !== nombre;
-    });
-
-    this.setState({animes: fillteredAnimes});
   } 
 
   onEditSubmit(name, gender, temp, id){

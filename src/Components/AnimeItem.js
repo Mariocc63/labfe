@@ -14,9 +14,9 @@ class AnimeItem extends Component {
   }
 
   onDelete(){
-    const { onDelete, nombre } = this.props;
+    const { onDelete, _id } = this.props;
 
-    onDelete(nombre);
+    onDelete(_id);
   }
 
   onEdit(){
